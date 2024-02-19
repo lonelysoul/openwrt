@@ -51,7 +51,7 @@ jobs:
       uses: peter-evans/repository-dispatch@v3
       with:
         token: ${{ secrets.ACTIONS_TRIGGER_PAT }}
-        event-type: AutoBuild
+        event-type: AutoBuildOpenwrt
         
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@v2
