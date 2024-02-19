@@ -11,13 +11,13 @@
 
 name: aCheck
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: master
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: 0 */36 * * *
+    - cron: 0 */48 * * *
 
 jobs:
   check:
