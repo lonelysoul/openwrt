@@ -13,7 +13,7 @@
 
 
 # 取消注释一个 feed 源
-sed -i "/helloworld/d" "feeds.conf.default"
+# sed -i "/helloworld/d" "feeds.conf.default"
 
 # 添加一个 feed 源
 # echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
