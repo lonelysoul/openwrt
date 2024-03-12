@@ -16,5 +16,5 @@
 sed -i "/helloworld/d" "feeds.conf.default"
 
 # 添加一个 feed 源
-echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
+# echo "src-git helloworld https://github.com/fw876/helloworld.git" >> "feeds.conf.default"
 # echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
