@@ -2,6 +2,7 @@
 
 # 设置工作目录变量
 WORK_DIR="./openwrt"
+BRANCH="openwrt-23.05"
 
 # 判断是否传入了 -c 参数
 FORCE_COMPILE=false
@@ -20,9 +21,9 @@ done
 cd "$WORK_DIR" || { echo "Failed to change directory to $WORK_DIR"; exit 1; }
 
 # 拉取最新代码
-git fetch origin
+git fetch origin $BRANCH
 LOCAL=$(git rev-parse HEAD)
-REMOTE=$(git rev-parse @{u})
+REMOTE=$(git rev-parse origin/$BRANCH)
 
 # 检查本地和远程代码是否一致或是否强制编译
 if [ "$LOCAL" != "$REMOTE" ] || [ "$FORCE_COMPILE" = true ]; then
@@ -34,8 +35,8 @@ if [ "$LOCAL" != "$REMOTE" ] || [ "$FORCE_COMPILE" = true ]; then
     # 开始计时
     start=$(date +%s)
     # 拉取最新代码并重新编译
-    if ! git pull origin master; then
-        echo "Failed to pull the latest code from origin/master."
+    if ! git pull origin $BRANCH; then
+        echo "Failed to pull the latest code from origin/$BRANCH."
         exit 1
     fi
     if ! ./scripts/feeds update -a; then
@@ -64,3 +65,6 @@ else
     # 本地代码是最新的，无需重新编译
     echo "Source code is up-to-date. No need to recompile."
 fi
+
+# 返回原目录
+cd "$ORIGINAL_DIR"
