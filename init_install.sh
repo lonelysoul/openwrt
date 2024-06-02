@@ -5,6 +5,8 @@ REPO_URL="https://github.com/openwrt/openwrt"
 BRANCH="openwrt-23.05"
 CONFIG_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/.config"
 SRC_DIR="openwrt"
+DIY_PART1_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/diy-part1.sh"
+DIY_PART2_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/diy-part2.sh"
 
 # 保存当前目录
 ORIGINAL_DIR=$(pwd)
@@ -32,14 +34,16 @@ clone_repo() {
   else
     git clone -b $BRANCH --single-branch --filter=blob:none $REPO_URL $SRC_DIR
     check_command_success "git clone"
-    # 进入源码目录并执行 diy-part1.sh
-    if [ -f "$SRC_DIR/diy-part1.sh" ]; then
-      (cd $SRC_DIR && bash diy-part1.sh)
-      check_command_success "diy-part1.sh"
-    else
-      echo "Warning: $SRC_DIR/diy-part1.sh not found, skipping."
-    fi
   fi
+}
+
+# 下载并执行 diy-part1.sh
+run_diy_part1() {
+  wget -O $SRC_DIR/diy-part1.sh $DIY_PART1_URL
+  check_command_success "wget diy-part1.sh"
+  chmod +x $SRC_DIR/diy-part1.sh
+  (cd $SRC_DIR && bash diy-part1.sh)
+  check_command_success "diy-part1.sh"
 }
 
 # 更新和安装 feeds
@@ -49,14 +53,15 @@ update_and_install_feeds() {
 
   ./scripts/feeds install -a
   check_command_success "feeds install"
+}
 
-  # 执行 diy-part2.sh
-  if [ -f "diy-part2.sh" ]; then
-    bash diy-part2.sh
-    check_command_success "diy-part2.sh"
-  else
-    echo "Warning: diy-part2.sh not found, skipping."
-  fi
+# 下载并执行 diy-part2.sh
+run_diy_part2() {
+  wget -O diy-part2.sh $DIY_PART2_URL
+  check_command_success "wget diy-part2.sh"
+  chmod +x diy-part2.sh
+  bash diy-part2.sh
+  check_command_success "diy-part2.sh"
 }
 
 # 下载并覆盖配置文件
@@ -72,10 +77,16 @@ download_config() {
 main() {
   clone_repo
 
+  # 下载并执行 diy-part1.sh
+  run_diy_part1
+
   # 进入源码目录
   cd $SRC_DIR
 
   update_and_install_feeds
+
+  # 下载并执行 diy-part2.sh
+  run_diy_part2
 
   download_config
 
