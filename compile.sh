@@ -17,6 +17,9 @@ while getopts ":c" opt; do
   esac
 done
 
+# 保存当前目录
+ORIGINAL_DIR=$(pwd)
+
 # 进入工作目录
 cd "$WORK_DIR" || { echo "Failed to change directory to $WORK_DIR"; exit 1; }
 
