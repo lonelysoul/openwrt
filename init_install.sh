@@ -2,7 +2,7 @@
 
 # 设置变量
 REPO_URL="https://github.com/openwrt/openwrt"
-BRANCH="openwrt-24.10"
+BRANCH="master"
 CONFIG_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/.config"
 SRC_DIR="openwrt"
 DIY_PART1_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/diy-part1.sh"
