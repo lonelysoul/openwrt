@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # 设置变量
-REPO_URL="https://github.com/openwrt/openwrt"
-BRANCH="master"
-CONFIG_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/.config"
-SRC_DIR="openwrt"
-DIY_PART1_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/diy-part1.sh"
-DIY_PART2_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/diy-part2.sh"
+REPO_URL="https://github.com/openwrt/openwrt"  # OpenWrt 源码仓库地址
+BRANCH="master"  # 使用的分支
+CONFIG_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/.config"  # 配置文件 URL
+SRC_DIR="openwrt"  # 源码目录名称
+DIY_PART1_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/diy-part1.sh"  # diy-part1 脚本 URL
+DIY_PART2_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/diy-part2.sh"  # diy-part2 脚本 URL
 
 # 保存当前目录
 ORIGINAL_DIR=$(pwd)
@@ -22,7 +22,7 @@ sudo apt update && sudo apt install -y "${DEPENDENCIES[@]}"
 # 检查命令是否成功执行
 check_command_success() {
   if [ $? -ne 0 ]; then
-    echo "Error: $1 failed. Exiting."
+    echo "错误: $1 执行失败，退出程序。"
     exit 1
   fi
 }
@@ -75,7 +75,7 @@ download_config() {
 
 # 主要执行步骤
 main() {
-  clone_repo
+  clone_repo  # 克隆源码
 
   # 下载并执行 diy-part1.sh
   run_diy_part1
@@ -83,19 +83,19 @@ main() {
   # 进入源码目录
   cd $SRC_DIR
 
-  update_and_install_feeds
+  update_and_install_feeds  # 更新并安装 feeds
 
   # 下载并执行 diy-part2.sh
   run_diy_part2
 
-  download_config
+  download_config  # 下载并覆盖配置文件
 
   # 补全配置
   make defconfig
   check_command_success "make defconfig"
 }
 
-main
+main  # 执行主要步骤
 
 # 返回原目录
 cd $ORIGINAL_DIR
