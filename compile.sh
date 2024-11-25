@@ -2,7 +2,7 @@
 
 # 设置工作目录变量
 WORK_DIR="./openwrt"
-BRANCH="openwrt-23.05"
+BRANCH="master"
 
 # 判断是否传入了 -c 参数
 FORCE_COMPILE=false
