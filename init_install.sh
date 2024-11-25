@@ -7,6 +7,7 @@ CONFIG_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/.config"  
 SRC_DIR="openwrt"  # 源码目录名称
 DIY_PART1_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/diy-part1.sh"  # diy-part1 脚本 URL
 DIY_PART2_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/main/diy-part2.sh"  # diy-part2 脚本 URL
+XDP_URL="https://raw.githubusercontent.com/lonelysoul/openwrt/refs/heads/main/xdp-sockets-diag.mk"
 
 # 保存当前目录
 ORIGINAL_DIR=$(pwd)
