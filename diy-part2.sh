@@ -20,5 +20,9 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 git clone https://github.com/QiuSimons/luci-app-daed package/dae
 
+wget https://raw.githubusercontent.com/lonelysoul/openwrt/refs/heads/main/xdp-sockets-diag.mk
+echo -e "\n\n" >> package/kernel/linux/modules/netsupport.mk && cat xdp-sockets-diag.mk >> package/kernel/linux/modules/netsupport.mk
+
+
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
