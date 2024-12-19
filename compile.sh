@@ -72,6 +72,12 @@ if [ "$LOCAL" != "$REMOTE" ] || [ "$FORCE_COMPILE" = true ]; then
         exit 1
     fi
 
+    # 新增：运行 make defconfig
+    if ! make defconfig; then
+        echo "执行 make defconfig 失败。"
+        exit 1
+    fi
+
     print_step "开始编译"
     if ! make -j$(nproc --ignore=1); then
         echo "编译失败。"
