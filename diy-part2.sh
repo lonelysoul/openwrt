@@ -18,10 +18,10 @@
 # git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 # git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
-git clone https://github.com/QiuSimons/luci-app-daed package/dae
+# git clone https://github.com/QiuSimons/luci-app-daed package/dae
 
-wget https://raw.githubusercontent.com/lonelysoul/openwrt/refs/heads/main/xdp-sockets-diag.mk
-echo -e "\n\n" >> package/kernel/linux/modules/netsupport.mk && cat xdp-sockets-diag.mk >> package/kernel/linux/modules/netsupport.mk
+# wget https://raw.githubusercontent.com/lonelysoul/openwrt/refs/heads/main/xdp-sockets-diag.mk
+# echo -e "\n\n" >> package/kernel/linux/modules/netsupport.mk && cat xdp-sockets-diag.mk >> package/kernel/linux/modules/netsupport.mk
 
 
 # Modify default IP
